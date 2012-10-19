@@ -2,7 +2,7 @@
 \alias{find_large_cor}
 \title{Find large correlations}
 \usage{
-  find_large_cor(x, rho)
+  find_large_cor(x, rho = 0.9)
 }
 \arguments{
   \item{x}{correlation matrix}
