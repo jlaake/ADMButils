@@ -1,0 +1,15 @@
+Package: JLutils
+Version: 1.0.0
+Date: 2012-10-19
+Title: ADMB utility functions
+Author: Jeff Laake <jeff.laake@noaa.gov>
+Description: This package contains some ADMB utility functions that work with
+    R2admb.
+LazyLoad: yes
+License: GPL version 2 or later
+Maintainer: Jeff Laake <Jeff.Laake@noaa.gov>
+Depends:
+    R2admb
+Collate:
+    'extract_gradient.r'
+    'find_large_cor.r'

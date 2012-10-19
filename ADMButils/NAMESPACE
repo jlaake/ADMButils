@@ -1,0 +1,2 @@
+export(extract_gradient)
+export(find_large_cor)
