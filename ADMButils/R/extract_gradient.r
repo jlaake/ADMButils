@@ -39,6 +39,6 @@ extract_gradient=function(admbfile)
 		}
 	}
 	gradmatrix=data.frame(gradmatrix)
-	gradmatrix$var=rownames(read_admb(admbfile)$vcov)
+	gradmatrix$var=rownames(read_admb(admbfile)$vcov)[1:nvar]
 	return(gradmatrix[order(abs(gradmatrix$gradient)),])
 }
