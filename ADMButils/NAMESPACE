@@ -1,2 +1,4 @@
 export(extract_gradient)
 export(find_large_cor)
+export(read_tpl)
+export(write_tpl)

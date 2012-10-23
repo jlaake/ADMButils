@@ -1,15 +1,18 @@
 Package: ADMButils
 Version: 1.0.1
-Date: 2012-10-19
+Date: 2012-10-22
 Title: ADMB utility functions
 Author: Jeff Laake <jeff.laake@noaa.gov>
 Description: This package contains some ADMB utility functions that work with
     R2admb.
 LazyLoad: yes
-License: GPL version 2 or later
+License: GPL (>=2)
 Maintainer: Jeff Laake <Jeff.Laake@noaa.gov>
 Depends:
     R2admb
+Imports:
+    stringr
 Collate:
     'extract_gradient.r'
     'find_large_cor.r'
+    'read_write_tpl.r'
