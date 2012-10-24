@@ -95,9 +95,12 @@ read_tpl=function(tplfile)
 	}
 	return(tplStruct)
 }
-write_tpl=function(tplStruct,tplfile)
+write_tpl=function(tplStruct,tplfile=NULL)
 {
-   	filename=paste(tplfile,".TPL",sep="")
+	if(is.null(tplfile))
+		if(names(tplStruct[1])=="tplfile") tplfile=tplStruct[[1]]
+	if(is.null(tplfile))stop("must provide a tpl file if not contained in tplStruct")
+	filename=paste(tplfile,".TPL",sep="")
 	con=file(filename,open="wt")
 	Sections=c("DATA","INITIALIZATION","PARAMETER","PRELIMINARY_CALCS","PROCEDURE",
 			"REPORT","RUNTIME","TOP_OF_MAIN","GLOBALS","BETWEEN_PHASES","FINAL")
