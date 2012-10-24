@@ -1,6 +1,6 @@
 Package: ADMButils
-Version: 1.0.1
-Date: 2012-10-22
+Version: 1.0.2
+Date: 2012-10-24
 Title: ADMB utility functions
 Author: Jeff Laake <jeff.laake@noaa.gov>
 Description: This package contains some ADMB utility functions that work with
@@ -16,3 +16,4 @@ Collate:
     'extract_gradient.r'
     'find_large_cor.r'
     'read_write_tpl.r'
+    'get_admb_data.r'

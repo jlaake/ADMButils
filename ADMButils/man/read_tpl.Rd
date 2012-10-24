@@ -74,7 +74,7 @@ admb_linearmodel=function(formula,data)
 	rownames(results$cor)=colnames(xmat)
 	colnames(results$cor)=colnames(xmat)
  # cleanup
-	clean_admb(admbfile)
+	unlink(paste(admbfile,".*",sep=""))
 	return(results)
 }
 # test run using iris data

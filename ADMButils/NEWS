@@ -1,0 +1,27 @@
+ADMButils 1.0.2 (24 Oct 2012)
+------------
+NEW FEATURES
+
+* Added get_admb_data and get_admb_init_fields and others as the beginning point for functionality described by Maunder in the R-ADMB interface pdf on ADMB website. Currently only supports int,vector,ivector,matrix,imatrix.
+ 
+CHANGES
+
+* added tplfile name as first value in list returned by read_tpl
+
+ADMButils 1.0.1 (24 Oct 2012)
+------------
+NEW FEATURES
+
+* Added read_tpl and write_tpl code
+
+BUG FIXES
+
+* Fixed bug in extract_gradient to allow for derived variables
+
+
+ADMButils 1.0.0 (19 Oct 2012)
+------------
+NEW FEATURES
+
+* Initial release with find_large_cor and extract_gradient functions
+

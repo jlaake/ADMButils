@@ -1,4 +1,6 @@
 export(extract_gradient)
 export(find_large_cor)
+export(get_admb_data)
+export(get_admb_init_fields)
 export(read_tpl)
 export(write_tpl)

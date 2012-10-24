@@ -63,7 +63,7 @@
 #'	rownames(results$cor)=colnames(xmat)
 #'	colnames(results$cor)=colnames(xmat)
 #'  # cleanup
-#'	clean_admb(admbfile)
+#'	unlink(paste(admbfile,".*",sep=""))
 #'	return(results)
 #'}
 #'# test run using iris data
@@ -80,16 +80,17 @@ read_tpl=function(tplfile)
 	num_sections=length(section_loc)
 	section_names=strsplit(out[section_loc],"_SECTION")
 	section_names=sapply(section_names,stringr:::str_trim)
-	tplStruct=vector("list",length=num_sections)
-	names(tplStruct)=section_names
+	tplStruct=vector("list",length=num_sections+1)
+	names(tplStruct)=c("tplfile",section_names)
+    tplStruct[[1]]=tplfile
 	for (i in 1:num_sections)
 	{
        if(i < num_sections)
 	   {
-		   tplStruct[[i]]=out[(section_loc[i]+1):(section_loc[i+1]-1)]
+		   tplStruct[[i+1]]=out[(section_loc[i]+1):(section_loc[i+1]-1)]
 	   }else
 	   {
-		   tplStruct[[i]]=out[(section_loc[i]+1):length(out)]   
+		   tplStruct[[i+1]]=out[(section_loc[i]+1):length(out)]   
 	   }
 	}
 	return(tplStruct)
@@ -121,4 +122,3 @@ write_tpl=function(tplStruct,tplfile)
 	close(con)
 	invisible()
 }
-
