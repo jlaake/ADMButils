@@ -46,7 +46,11 @@ get_admb_data=function(tplStruct)
 				collength=eval(parse(text=paste(dims[4],"-",dims[3],"+1",sep="")),envir=lst)
 				eval(parse(text=paste('lst[["',obj,'"]]=vector("',xmode,'",length=',rowlength*collength,")",sep="")))
 				eval(parse(text=paste('dim(lst[["',obj,'"]])=c(',rowlength,",",collength,")",sep="")))
-			}	   
+			} else
+				if(type=="bounded_number")
+				{
+					
+				}
 		}
 		dat=read_admb_data(lst[[obj]],con)
 		if(type%in%c("imatrix","matrix"))
@@ -75,27 +79,38 @@ get_admb_init_fields=function(tplSection)
 	x=strsplit(x," ")
 	type=sapply(x,function(x) x[1])
 	object=sapply(x, function(x) x[length(x)])
-	dims=vector("list",length(object))
+#	dims=vector("list",length(object))
+#	bounds=vector("list",length(object))
+#	phases=vector("list",length(object))
+    field_values=vector("list",length(object))
 	for(i in 1:length(object))
-	{
-		if(type[i]%in%c("vector","ivector","matrix","imatrix"))
-		{
-			begin=regexpr("\\(",object[i])+1
-			end=regexpr("\\)",object[i])-1
-			dims[[i]]=strsplit(substr(object[i],begin,end),",")[[1]]
-		} else
-			dims[[i]]=1
-	}	
+		field_values[[i]]=parse_field(type,object)
 	object=sapply(object,function(x) strsplit(x,split="\\(")[[1]][1])
 	names(object)=NULL
-	Rmode=c(int="numeric",number="numeric",vector="numeric",matrix="numeric",ivector="numeric",imatrix="numeric")
-	valid.types=c("int","number","vector","ivector","matrix","imatrix")
+	Rmode=c(int="numeric",bounded_number="numeric",number="numeric",vector="numeric",matrix="numeric",ivector="numeric",imatrix="numeric")
+	valid.types=c("int","bounded_number","number","vector","ivector","matrix","imatrix")
 	if(any(!type%in%valid.types))stop(paste("\nEncountered unsupported types: ",
 						paste(unique(type[!type%in%valid.types]),collapse=","),
 						"\nValid types are: ",paste(valid.types,collapse=","),sep=""))
-	return(list(type=type,object=object,dims=dims,mode=Rmode[type]))
-
+	return(list(type=type,object=object,mode=Rmode[type],attributes=field_values))
 }
+
+parse_field=function(type,obj)
+{
+	if(length(grep("\\(",obj))!=0)
+	{
+		begin=regexpr("\\(",object[i])+1
+		end=regexpr("\\)",object[i])-1
+		vals=strsplit(substr(object[i],begin,end),",")[[1]]
+	}
+	if(type[i]%in%c("vector","ivector","matrix","imatrix"))
+	    dims=vals	
+	else
+		dims=1
+	return(list(dims=dims))
+}
+
+
 read_admb_data=function(object,con)
 {
 	if(is.vector(object))

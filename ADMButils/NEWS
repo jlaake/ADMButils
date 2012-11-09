@@ -1,3 +1,10 @@
+ADMButils 1.0.3 (26 Oct 2012)
+------------
+
+CHANGES
+
+* changed read_tpl and write_tpl to include comments at beginning of file
+
 ADMButils 1.0.2 (24 Oct 2012)
 ------------
 NEW FEATURES
@@ -8,7 +15,7 @@ CHANGES
 
 * added tplfile name as first value in list returned by read_tpl
 
-ADMButils 1.0.1 (24 Oct 2012)
+ADMButils 1.0.1 (22 Oct 2012)
 ------------
 NEW FEATURES
 

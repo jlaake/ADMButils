@@ -79,6 +79,12 @@ read_tpl=function(tplfile)
 	section_loc=grep("_SECTION",out)
 	num_sections=length(section_loc)
 	section_names=strsplit(out[section_loc],"_SECTION")
+	if(section_loc[1]!=1)
+	{
+		section_loc=c(1,section_loc)
+	    num_sections=num_sections+1
+		section_names=c("Comments",section_names)
+	}
 	section_names=sapply(section_names,stringr:::str_trim)
 	tplStruct=vector("list",length=num_sections+1)
 	names(tplStruct)=c("tplfile",section_names)
@@ -106,6 +112,7 @@ write_tpl=function(tplStruct,tplfile=NULL)
 			"REPORT","RUNTIME","TOP_OF_MAIN","GLOBALS","BETWEEN_PHASES","FINAL")
     if(is.null(tplStruct[["DATA"]]) | is.null(tplStruct[["PARAMETER"]]) | is.null(tplStruct[["PROCEDURE"]]))
 		 stop("tplStruct must have a non-null DATA, PARAMETER and PROCEDURE section\n")
+    if(!is.null(tplStruct$Comments))writeLines(tplStruct$Comments,con)
 	for(section_name in Sections)
 	{
 		if(!is.null(tplStruct[[section_name]]))
