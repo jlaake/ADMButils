@@ -2,7 +2,7 @@ Package: ADMButils
 Version: 1.0.3
 Date: 2012-10-25
 Title: ADMB utility functions
-Author: Jeff Laake <jeff.laake@noaa.gov>
+Author: Jeff Laake <jefflaake@gmail.com>
 Description: This package contains some ADMB utility functions that work with
     R2admb.
 LazyLoad: yes
